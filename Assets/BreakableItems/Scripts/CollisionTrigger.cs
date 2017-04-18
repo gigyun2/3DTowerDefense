@@ -17,7 +17,7 @@ public class CollisionTrigger : MonoBehaviour
 		{
 				float weight;
 				if (ExplosionSound)
-						this.audio.clip = ExplosionSound;
+						this.GetComponent<AudioSource>().clip = ExplosionSound;
 		
 				foreach (Rigidbody RigidB in GameObject.FindObjectsOfType(typeof(Rigidbody))) {
 	 
@@ -30,7 +30,7 @@ public class CollisionTrigger : MonoBehaviour
 						if (weight == 0) {
 								Destroy (RigidB);
 						} else
-								RigidB.rigidbody.mass = weight * 10.0f;
+								RigidB.GetComponent<Rigidbody>().mass = weight * 10.0f;
 
 				}	
 				InvokeRepeating ("checkRigidBodySpeed", 0.5f, 1.0f);
@@ -49,7 +49,7 @@ public class CollisionTrigger : MonoBehaviour
 		void OnCollisionStay (Collision other)
 		{ 
 				if (other.collider.tag.ToString () == "Explosion") 
-						this.animation.Play ();
+						this.GetComponent<Animation>().Play ();
 				isExplosion = 10;
 		}
 
@@ -65,12 +65,12 @@ public class CollisionTrigger : MonoBehaviour
 
 				if (other.collider.tag.ToString () == "Explosion") {
 						Dest (other.collider.gameObject.name);
-						this.animation.Play ();
+						this.GetComponent<Animation>().Play ();
 						if (this.ExplosionSound) {
-								float soundDist = Vector3.Distance (this.gameObject.rigidbody.position, lastSoundPos);
-								if (!this.gameObject.audio.isPlaying || soundDist > 10.0) {
-										this.audio.Play ();
-										lastSoundPos = this.gameObject.rigidbody.position;
+								float soundDist = Vector3.Distance (this.gameObject.GetComponent<Rigidbody>().position, lastSoundPos);
+								if (!this.gameObject.GetComponent<AudioSource>().isPlaying || soundDist > 10.0) {
+										this.GetComponent<AudioSource>().Play ();
+										lastSoundPos = this.gameObject.GetComponent<Rigidbody>().position;
 										StartCoroutine (Wait ());
 								}
 						}
@@ -87,7 +87,7 @@ public class CollisionTrigger : MonoBehaviour
 
 		IEnumerator Wait ()
 		{
-				yield return new WaitForSeconds (this.audio.clip.length / 10.0f);
+				yield return new WaitForSeconds (this.GetComponent<AudioSource>().clip.length / 10.0f);
 		}
 
 		void Dest (string Obj)

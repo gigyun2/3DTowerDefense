@@ -17,14 +17,14 @@ public class objectOcclusionCulling : MonoBehaviour
  
 		void LateUpdate ()
 		{
-				StartCoroutine_Auto (checkVisible ());
+				StartCoroutine (checkVisible ());
 		}
 		IEnumerator checkVisible ()
 		{
 				cnt = 0;
 				while (cnt<comps.Length) {
 						dist = Vector3.Distance (comps [cnt].transform.position, mainCamera.transform.position);
-						if (comps [cnt].renderer.IsVisibleFrom (mainCamera)) {
+						if (comps [cnt].GetComponent<Renderer>().IsVisibleFrom (mainCamera)) {
 								comps [cnt].gameObject.SetActive (true);
 						} else {
 								comps [cnt].gameObject.SetActive (false);

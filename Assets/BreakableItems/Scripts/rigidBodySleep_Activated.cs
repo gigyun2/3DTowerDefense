@@ -18,15 +18,15 @@ public class rigidBodySleep_Activated : MonoBehaviour
 				Time.timeScale = 0;
 	
 
-				this.audio.volume = 1;
-				defaultHitSound.audio.volume = 1;
+				this.GetComponent<AudioSource>().volume = 1;
+				defaultHitSound.GetComponent<AudioSource>().volume = 1;
 	
 				foreach (Rigidbody RigidB in GameObject.FindObjectsOfType(typeof(Rigidbody))) {
 						if (RigidB.gameObject.tag.Contains ("WallLayer")) {
 								RigidB.name = RigidB.GetInstanceID ().ToString ();
 								RigidB.Sleep ();
-								RigidB.gameObject.audio.volume = 1;
-								RigidB.gameObject.audio.rolloffMode = AudioRolloffMode.Linear;
+								RigidB.gameObject.GetComponent<AudioSource>().volume = 1;
+								RigidB.gameObject.GetComponent<AudioSource>().rolloffMode = AudioRolloffMode.Linear;
 						}
 				}	 
 	
@@ -44,10 +44,10 @@ public class rigidBodySleep_Activated : MonoBehaviour
 				Coll = true;
 				if (other.collider.tag.ToString () == "WallLayer") {
 						myRigidBodyProperty = other.collider.gameObject.GetComponent<setRigidBodyProperty> ().myRigidBodyProperty;
-						other.collider.gameObject.audio.clip = myRigidBodyProperty.ExplosionSound;
+						other.collider.gameObject.GetComponent<AudioSource>().clip = myRigidBodyProperty.ExplosionSound;
 						Dest (other.collider.gameObject.name);
 						if (myRigidBodyProperty.ExplosionSound) {
-								other.collider.gameObject.audio.Play ();
+								other.collider.gameObject.GetComponent<AudioSource>().Play ();
 						}
 						if (myRigidBodyProperty.particleExplosion) {
 								#if DEBUG
@@ -57,16 +57,16 @@ public class rigidBodySleep_Activated : MonoBehaviour
 						}
 						if (myRigidBodyProperty.destroyedObject) {
 								GameObject objectDestroyed = (GameObject)Instantiate (myRigidBodyProperty.destroyedObject, other.collider.gameObject.transform.position, Quaternion.identity);
-								objectDestroyed.audio.clip = myRigidBodyProperty.ExplosionSound;
+								objectDestroyed.GetComponent<AudioSource>().clip = myRigidBodyProperty.ExplosionSound;
 						 
-								objectDestroyed.audio.volume = 1;
-								objectDestroyed.audio.Play ();
+								objectDestroyed.GetComponent<AudioSource>().volume = 1;
+								objectDestroyed.GetComponent<AudioSource>().Play ();
 								GameObject.Destroy (other.collider.gameObject);
 						}
 				} else {
 						if (defaultHitSound != null && other.collider.tag.ToString () != "Terrain") {
-								defaultHitSound.gameObject.audio.volume = 1;
-								defaultHitSound.gameObject.audio.Play ();
+								defaultHitSound.gameObject.GetComponent<AudioSource>().volume = 1;
+								defaultHitSound.gameObject.GetComponent<AudioSource>().Play ();
 						}
 				}
 		}
