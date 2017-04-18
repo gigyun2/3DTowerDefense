@@ -15,7 +15,7 @@ abstract public class AttackableController : MonoBehaviour {
 
 	// Use this for initialization
 	public virtual void Start () {
-		
+		this.isAlive = true;
 	}
 	
 	// Update is called once per frame
@@ -43,7 +43,7 @@ abstract public class AttackableController : MonoBehaviour {
         }
 	}
 
-    abstract protected void OnCollisionEnter(Collision collision);
+    //abstract protected void OnCollisionEnter(Collision collision);
 
     /// not decided return type
     public void Hurt (int damage) {
@@ -54,7 +54,7 @@ abstract public class AttackableController : MonoBehaviour {
 			
 			this.hp -= effectiveDamage;
             if (this.hp <= 0) {
-                this.isAlive = true;
+                this.isAlive = false;
                 die();
             }
 
