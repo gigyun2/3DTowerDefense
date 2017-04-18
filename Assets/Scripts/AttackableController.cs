@@ -44,4 +44,5 @@ abstract public class AttackableController : MonoBehaviour {
 
     /// not decided return/param type
     abstract protected void die();
+
 }

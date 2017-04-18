@@ -10,8 +10,8 @@ public rigidBodyProperty myRigidBodyProperty;
 	void Awake(){
 
 			if (this.tag.Contains ("WallLayer")) {
-				this.rigidbody.name =this.rigidbody.GetInstanceID ().ToString ();
-				this.rigidbody.Sleep ();
+				this.GetComponent<Rigidbody>().name =this.GetComponent<Rigidbody>().GetInstanceID ().ToString ();
+				this.GetComponent<Rigidbody>().Sleep ();
 			}
 		}
 }

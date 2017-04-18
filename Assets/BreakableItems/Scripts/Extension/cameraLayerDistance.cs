@@ -32,7 +32,7 @@ public class cameraLayerDistance : MonoBehaviour
 								}
 						}
 				}
-				camera.layerCullDistances = distances;
+				GetComponent<Camera>().layerCullDistances = distances;
 		}
 
 		/*
