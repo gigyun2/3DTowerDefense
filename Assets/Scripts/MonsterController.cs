@@ -35,6 +35,19 @@ public class MonsterController : AttackableController {
 		}
 	}
 
+	void OnCollisionStay(Collision collision) {
+		GameObject collidedObject = collision.gameObject.transform.root.gameObject;
+		if (collidedObject != null) {
+			if (this.cd <= 0) {
+				// attack
+				if (collidedObject.tag.Equals ("Barrier")) {
+					collidedObject.GetComponent<BarrierController> ().Hurt (this.atk);
+				}
+				this.cd = 1 / this.speed;
+			}
+		}
+	}
+
 	protected override void die() {
 		// give reawrd to palyer
 	}
