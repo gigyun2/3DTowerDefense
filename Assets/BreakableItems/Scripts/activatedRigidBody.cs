@@ -16,7 +16,7 @@ public class activatedRigidBody : MonoBehaviour
 						if (weight == 0) {
 								Destroy (RigidB);
 						} else
-								RigidB.rigidbody.mass = weight * 50.0f;
+								RigidB.GetComponent<Rigidbody>().mass = weight * 50.0f;
 						 
 				}	 
 		}

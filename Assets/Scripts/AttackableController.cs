@@ -14,12 +14,16 @@ abstract public class AttackableController : MonoBehaviour {
     public bool isAlive;
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
+		if (this.cd > 0) {
+			this.cd -= Time.deltaTime;
+		}
+
 		if (!isAlive) {
             //GetComponent<MeshRenderer>().material.color.a = Mathf.Lerp(1, 0, t);
             //t += Time.deltaTime * (1.0f / 2);

@@ -13,7 +13,7 @@ public class cameraDistanceCulling : MonoBehaviour
 		public Camera mainCamera;
 		void Update ()
 		{
-				StartCoroutine_Auto (visibleCheck ());
+				StartCoroutine (visibleCheck ());
 		}
 		IEnumerator visibleCheck ()
 		{
@@ -21,11 +21,11 @@ public class cameraDistanceCulling : MonoBehaviour
 				if (dist < range) {
 						if (isMeshHide == 0) {
 
-								StartCoroutine_Auto (meshShow ());	
+								StartCoroutine (meshShow ());	
 								isMeshHide = 1;
 						
 								if (isRigidBodySleep) {	
-										StartCoroutine_Auto (wallLayerSleep ());
+										StartCoroutine (wallLayerSleep ());
 										isRigidBodySleep = false;
 								}
 						}
@@ -33,7 +33,7 @@ public class cameraDistanceCulling : MonoBehaviour
 				} else if (isMeshHide == 1) {
 						isMeshHide = 0;
 
-						StartCoroutine_Auto (meshHide ());	
+						StartCoroutine (meshHide ());	
 		
 						isRigidBodySleep = true;
 				}	 
@@ -61,11 +61,11 @@ public class cameraDistanceCulling : MonoBehaviour
 
 				comps = this.GetComponentsInChildren<MeshRenderer> ();
 				foreach (MeshRenderer comp in comps) {
-						comp.renderer.enabled = false;
+						comp.GetComponent<Renderer>().enabled = false;
 				}
 				comps = this.GetComponentsInChildren<ParticleSystem> ();
 				foreach (ParticleSystem comp in comps) {
-						comp.particleSystem.enableEmission = false;
+						comp.GetComponent<ParticleSystem>().enableEmission = false;
 				}
 				/*
 			comps = this.GetComponentsInChildren<BoxCollider>();
@@ -93,11 +93,11 @@ public class cameraDistanceCulling : MonoBehaviour
 		{
 				comps = this.GetComponentsInChildren<MeshRenderer> ();
 				foreach (MeshRenderer comp in comps) {
-						comp.renderer.enabled = true;
+						comp.GetComponent<Renderer>().enabled = true;
 				}
 				comps = this.GetComponentsInChildren<ParticleSystem> ();
 				foreach (ParticleSystem comp in comps) {
-						comp.particleSystem.enableEmission = true;
+						comp.GetComponent<ParticleSystem>().enableEmission = true;
 				}
 				/*
 		comps = this.GetComponentsInChildren<BoxCollider>();
