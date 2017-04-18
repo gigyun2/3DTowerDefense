@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Character
+  - Monster
+  - Tower
+  - Projectile
+  - Collider
+  - Tile_walkable
+  - Tile_placeable
+  - Tile
   layers:
   - Default
   - TransparentFX

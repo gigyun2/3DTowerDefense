@@ -53,6 +53,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Use this for initialization
         private void Start()
         {
+            // TODO: add list of current objects
+            weapons.Add((GameObject)Resources.Load("Tower"));
+            towers.Add((GameObject)Resources.Load("Tower"));
+            barriers.Add((GameObject)Resources.Load("Tower"));
+
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
@@ -69,11 +74,47 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-            switch (holding.tag)
+            if (Input.GetMouseButtonDown(0) && holding != null)
             {
-                case "Tower":
-                case "Barrier":
-                    break;
+                switch (holding.tag)
+                {
+                    case "Tower":
+                        buildTower(holding.transform.position, 0);
+                        holding = Instantiate(weapons[0]);
+                        break;
+                    case "Barrier":
+                        buildBarrier(holding.transform.position, 0);
+                        holding = Instantiate(weapons[0]);
+                        break;
+                    case "Weapon":
+                        fire();
+                        break;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                Destroy(holding);
+                holding = Instantiate(weapons[0]);
+            }
+            else if (Input.GetKeyDown(KeyCode.Keypad2))
+            {
+                Destroy(holding);
+                holding = Instantiate(towers[0]);
+            }
+            else if (Input.GetKeyDown(KeyCode.Keypad3))
+            {
+                Destroy(holding);
+                holding = Instantiate(barriers[0]);
+            }
+
+            if (holding.tag.Equals("Weapon"))
+            {
+                holding.transform.position = this.transform.position + Vector3.right;
+            }
+            else
+            {
+                //if (Physics.Raycast())
             }
 
             RotateView();
@@ -96,6 +137,43 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+        }
+
+        
+
+        private void buildTower(Vector3 pointing, int id)
+        {
+            // GameObject target = getGridPoint();
+            // if (target.placeable && !target.haveTower)
+            //      Instantiate(towers[id]);
+        }
+
+        private void buildBarrier(Vector3 pointing, int index)
+        {
+            // GameObject target = getGridPoint();
+            // if (target.walkable && !target.haveBarrier)
+            //      Instantiate(barriers[id]);
+        }
+
+        private void changeWeapon(int index)
+        {
+            holding = weapons[index];
+        }
+
+        private void fire()
+        {
+            if (cd <= 0)
+            {
+                GameObject bullet = Instantiate((GameObject)Resources.Load("Projectile"));
+                bullet.GetComponent<ProjectileController>().direction = transform.forward;
+                bullet.GetComponent<ProjectileController>().flySpeed = 2;
+                cd = 1 / speed;
+            }
+        }
+
+        protected override void die()
+        {
+            // give reawrd to palyer
         }
 
 

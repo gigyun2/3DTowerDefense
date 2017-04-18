@@ -37,4 +37,9 @@ public class TowerController : AttackableController {
 			}
 		}
 	}
+
+    protected override void die()
+    {
+
+    }
 }

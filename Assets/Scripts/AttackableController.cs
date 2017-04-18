@@ -10,7 +10,7 @@ abstract public class AttackableController : MonoBehaviour {
     public int def;
     public float range;
     public float speed;
-    public float cd;
+    public float cd; // cooldown
     public bool isAlive;
 
 	// Use this for initialization
@@ -26,7 +26,7 @@ abstract public class AttackableController : MonoBehaviour {
 
 		// updating Damage Text Visual effect
 		for (int i = 0; i < this.transform.childCount; i++) {
-			GameObject child = this.transform.GetChild (i);
+		    Transform child = this.transform.GetChild (i);
 			if (child.name.Equals ("Damage Text")) {
 				child.transform.position = child.transform.position + new Vector3 (0, 0.1f, 0);
 				// TODO: this rotation should be wrong, wait for test.
@@ -61,7 +61,7 @@ abstract public class AttackableController : MonoBehaviour {
 			GameObject damageText = new GameObject ();
 			damageText.name = "Damage Text";
 			TextMesh textMesh = damageText.AddComponent<TextMesh>();
-			textMesh.text = effectiveDamage;
+			textMesh.text = effectiveDamage.ToString();
 			textMesh.fontSize = 8;
 			textMesh.anchor = TextAnchor.MiddleCenter;
 			damageText.transform.SetParent (this.transform);

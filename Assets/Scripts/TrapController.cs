@@ -26,8 +26,13 @@ public class TrapController : AttackableController {
 					}
 				}
 			}
-			// TODO: with explose particle effect?
-			GameObject.Destroy (this);
-		}
-	}
+            // TODO: with explose particle effect?
+            die();
+        }
+    }
+
+    protected override void die()
+    {
+        GameObject.Destroy(this);
+    }
 }

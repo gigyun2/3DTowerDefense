@@ -55,6 +55,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
         }
 
+        protected override void die()
+        {
+            
+        }
+
 
         // Fixed update is called in sync with physics
         private void FixedUpdate()

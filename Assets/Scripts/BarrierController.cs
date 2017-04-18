@@ -13,4 +13,9 @@ public class BarrierController : AttackableController {
 		base.Update ();
 	}
 
+    protected override void die()
+    {
+
+    }
+
 }
