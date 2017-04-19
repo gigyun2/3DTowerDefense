@@ -108,7 +108,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 
             if (Input.GetKeyDown(KeyCode.Keypad1)) {
                 Destroy(holding);
-                holding = Instantiate(weapons[0]);
+                holding = Instantiate(weapons[0], transform.position + new Vector3(0.6f, 0.25f, 1), transform.rotation);
             } else if (Input.GetKeyDown(KeyCode.Keypad2)) {
                 Destroy(holding);
                 holding = Instantiate(towers[0]);
@@ -145,9 +145,17 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 
 
         private void buildTower (Vector3 pointing, int id) {
-            // GameObject target = getGridPoint();
-            // if (target.placeable && !target.haveTower)
-            //      Instantiate(towers[id]);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Physics.Raycast(ray, out hit, 100f);
+            if (hit.collider != null && hit.collider.tag.Equals("Tile_placeable")) {
+                GameObject go = GameObject.Instantiate(Resources.Load("Tower") as GameObject);
+                go.transform.position = hit.collider.transform.position + new Vector3(0f, 5f, 0f);
+                Quaternion quaternion = Quaternion.LookRotation(this.transform.position - hit.transform.position);
+                quaternion.x = 0;
+                quaternion.z = 0;
+                go.transform.rotation = quaternion;
+            }
         }
 
         private void buildBarrier (Vector3 pointing, int index) {
@@ -170,7 +178,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
         }
 
         protected override void die () {
-            // give reawrd to palyer
+            // popup Die UI
         }
 
 

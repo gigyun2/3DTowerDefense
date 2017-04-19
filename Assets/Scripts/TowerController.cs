@@ -15,7 +15,7 @@ public class TowerController : AttackableController {
         base.Update();
         if (cd <= 0) {
             foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Monster")) {
-                if (Vector3.Distance(monster.transform.position, this.transform.position) < this.range) {
+                if (Vector3.Distance(monster.transform.position, this.transform.position) < range) {
                     // face to target
                     Quaternion quaternion = Quaternion.LookRotation(monster.transform.position -
                         this.transform.GetChild(this.transform.childCount - 1).position);
@@ -26,16 +26,19 @@ public class TowerController : AttackableController {
                     // shoot
                     if (Projectile != null) {
                         GameObject projectile = GameObject.Instantiate(Projectile);
-                        projectile.transform.position = FirePoint.transform.position;
                         ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
-                        projectileController.direction = (monster.transform.position - this.transform.position).normalized;
+                        projectileController.direction = (monster.transform.position - FirePoint.transform.position).normalized;
+                        projectile.transform.position = FirePoint.transform.position + new Vector3(0, 1.57f, 0) + quaternion * Vector3.forward * 0.9f;// 2.9f);
                         projectileController.atk = this.atk;
                     }
 
-                    this.cd = 1 / this.speed;
+                    cd = 1 / speed;
                     break;
                 }
             }
+        }
+        else {
+            cd -= Time.deltaTime;
         }
     }
 
