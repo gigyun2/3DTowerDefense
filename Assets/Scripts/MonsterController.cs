@@ -21,9 +21,10 @@ public class MonsterController : AttackableController {
                 Debug.Log(route.Count);
             }
             direction.y = 0;
-            direction = direction.normalized;
             // Lerp
-            this.transform.forward = direction;
+            direction = direction.normalized;
+            if (direction != Vector3.zero)
+                this.transform.rotation = Quaternion.LookRotation(direction);
             this.GetComponent<Rigidbody>().velocity = direction * velocity;
         } else {
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;

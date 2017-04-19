@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 135409556281559256}
   - component: {fileID: 23334933908421002}
   - component: {fileID: 111080471523637792}
+  - component: {fileID: 114438254857596676}
+  - component: {fileID: 54845991374733798}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Collider
@@ -82,6 +84,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1859556565599760}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54845991374733798
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1859556565599760}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!111 &111080471523637792
 Animation:
   m_ObjectHideFlags: 1
@@ -97,6 +114,26 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 1
   m_CullingType: 0
+--- !u!114 &114438254857596676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1859556565599760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8d2cda44ab140b09b567917e72fe30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 10
+  atk: 5
+  def: 0
+  range: 0
+  speed: 10
+  cd: 0
+  isAlive: 0
+  flySpeed: 10
+  direction: {x: 0, y: 0, z: 0}
 --- !u!135 &135409556281559256
 SphereCollider:
   m_ObjectHideFlags: 1

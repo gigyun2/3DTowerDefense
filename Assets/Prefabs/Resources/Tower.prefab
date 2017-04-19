@@ -504,7 +504,7 @@ MonoBehaviour:
   cd: 0
   isAlive: 0
   FirePoint: {fileID: 1262646266366618}
-  Projectile: {fileID: 1306134886957238, guid: c87bc2c9152fbda439bc7d9b2e8ee5a0, type: 2}
+  Projectile: {fileID: 1859556565599760, guid: 48c382032ec7a184081797a68685f6dd, type: 2}
 --- !u!136 &136369988295054030
 CapsuleCollider:
   m_ObjectHideFlags: 1
