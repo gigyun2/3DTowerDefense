@@ -69,7 +69,6 @@ GameObject:
   - component: {fileID: 114535214483901912}
   - component: {fileID: 135604864764798732}
   - component: {fileID: 54494137298576254}
-  - component: {fileID: 136580678271649890}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Monster
@@ -387,7 +386,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1243037274871210}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 8.898657, y: -0.000999853, z: 5.1325827}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4761651856278408}
@@ -517,13 +516,13 @@ Rigidbody:
   m_GameObject: {fileID: 1243037274871210}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1
 --- !u!95 &95678348512479084
 Animator:
   serializedVersion: 3
@@ -552,15 +551,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c82dfa92764f4235b042e10ec1585b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 5
+  hp: 20
   atk: 5
   def: 0
   range: 0
   speed: 0
   cd: 0
-  isAlive: 0
+  isAlive: 1
   route: []
-  velocity: 3
+  velocity: 2
   reward: 0
 --- !u!135 &135604864764798732
 SphereCollider:
@@ -574,19 +573,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.008
   m_Center: {x: 0, y: 0.008, z: 0.001}
---- !u!136 &136580678271649890
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243037274871210}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137082868888353908
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -111,4 +111,4 @@ MonoBehaviour:
   range: 0
   speed: 0
   cd: 0
-  isAlive: 0
+  isAlive: 1

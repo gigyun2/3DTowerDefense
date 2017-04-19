@@ -15,8 +15,8 @@ public class ProjectileController : AttackableController {
         this.GetComponent<Rigidbody>().velocity = direction.normalized * flySpeed;
     }
 
-    void OnCollisionEnter (Collision collision) {
-        GameObject collidedObject = collision.collider.gameObject.transform.root.gameObject;
+    void OnTriggerEnter (Collider collider) {
+        GameObject collidedObject = collider.gameObject.transform.root.gameObject;
         if (collidedObject != null && collidedObject.tag.Equals("Monster")) {
             collidedObject.GetComponent<MonsterController>().Hurt(atk);
             die();
@@ -24,6 +24,6 @@ public class ProjectileController : AttackableController {
     }
 
     protected override void die () {
-        GameObject.Destroy(this);
+        GameObject.Destroy(this.gameObject);
     }
 }

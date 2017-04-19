@@ -21,15 +21,15 @@ public class BarrierController : AttackableController {
         base.Update();
     }
 
-    void OnCollisionEnter (Collision collision) {
-        GameObject collidedObject = collision.gameObject.transform.root.gameObject;
+    void OnTriggerEnter (Collider collider) {
+        GameObject collidedObject = collider.transform.root.gameObject;
         if (collidedObject != null && collidedObject.tag.Equals("Monster")) {
-            collidedObject.GetComponent<MonsterController>().velocity *= 1/2;
+            collidedObject.GetComponent<MonsterController>().velocity *= 0.5f;
         }
     }
 
-    void OnCollisionEnd (Collision collision) {
-        GameObject collidedObject = collision.gameObject.transform.root.gameObject;
+    void OnTriggerEnd (Collider collider) {
+        GameObject collidedObject = collider.transform.root.gameObject;
         if (collidedObject != null && collidedObject.tag.Equals("Monster")) {
             collidedObject.GetComponent<MonsterController>().velocity *= 2;
         }

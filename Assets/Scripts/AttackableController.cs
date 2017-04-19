@@ -34,12 +34,8 @@ abstract public class AttackableController : MonoBehaviour {
             }
         }
 
-        if (!isAlive) {
-            //GetComponent<MeshRenderer>().material.color.a = Mathf.Lerp(1, 0, t);
-            //t += Time.deltaTime * (1.0f / 2);
-            //if (t > 1.0f) {
-            //    Destroy(gameObject);
-            //}
+        if (hp <= 0) {
+            isAlive = false;
         }
     }
 
