@@ -12,6 +12,8 @@ TagManager:
   - Tile_walkable
   - Tile_placeable
   - Tile
+  - Trap
+  - Barrier
   layers:
   - Default
   - TransparentFX

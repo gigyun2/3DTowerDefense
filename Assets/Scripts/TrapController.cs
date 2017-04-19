@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class TrapController : AttackableController {
 	public string type;
-	void Start () {
-		base.Start ();
+
+    override public void Start() {
+        base.Start();
 		this.tag = "Trap";
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	override public void Update () {
 		base.Update ();
 	}
 
@@ -31,8 +32,7 @@ public class TrapController : AttackableController {
         }
     }
 
-    protected override void die()
-    {
+    protected override void die() {
         GameObject.Destroy(this);
     }
 }

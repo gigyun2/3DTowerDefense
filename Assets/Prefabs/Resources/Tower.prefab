@@ -137,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4194410572514126}
   - component: {fileID: 114341439138306168}
+  - component: {fileID: 136369988295054030}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Tower
@@ -502,5 +503,18 @@ MonoBehaviour:
   speed: 0
   cd: 0
   isAlive: 0
-  FirePoint: {fileID: 0}
-  Projectile: {fileID: 0}
+  FirePoint: {fileID: 1262646266366618}
+  Projectile: {fileID: 1306134886957238, guid: c87bc2c9152fbda439bc7d9b2e8ee5a0, type: 2}
+--- !u!136 &136369988295054030
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1945271750356260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2
+  m_Height: 12
+  m_Direction: 1
+  m_Center: {x: 0, y: 4, z: 0}
