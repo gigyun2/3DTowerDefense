@@ -25,7 +25,7 @@ public class SceneController : MonoBehaviour {
             for (int i = 0; i < monsterRoute.Count; i++) {
 
             }
-            monsters.Add(Instantiate(monster, route[0] * 2));
+            //monsters.Add(Instantiate(monster, route[0] * 2));
 
             n++;
             yield return new WaitForSeconds(1f);
