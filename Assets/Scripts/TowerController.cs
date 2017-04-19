@@ -15,7 +15,7 @@ public class TowerController : AttackableController {
 		if (PlayerPrefs.HasKey ("Tower1")) {
 			PlayerPrefs.GetInt ("Tower1");
 		}
-		this.transform.localScale = new Vector3 (0.25, 0.25, 0.25) * (1 + level * 0.25);
+		this.transform.localScale = new Vector3 (0.25f, 0.25f, 0.25f) * (1 + level * 0.25f);
 		this.atk = (int)(10 * (1 + 0.5 * (level - 1)));
 		this.speed = (float)(0.4 + 0.2 * (level - 1));
 		this.range = (float)(3 + 0.5 * (level - 1));
