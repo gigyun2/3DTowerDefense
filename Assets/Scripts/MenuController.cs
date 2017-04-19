@@ -117,6 +117,7 @@ public class MenuController : MonoBehaviour {
 		mainPanel.SetActive (false);
 		levelPanel.SetActive (true);
 		shopPanel.SetActive (false);
+		LoadProgress ();
 	}
 
 	public void gotoMainPanel() {
@@ -129,10 +130,18 @@ public class MenuController : MonoBehaviour {
 		mainPanel.SetActive (false);
 		levelPanel.SetActive (false);
 		shopPanel.SetActive (true);
+		LoadShop ();
 	}
 
 	public void exit() {
 		Application.Quit ();
+	}
+
+	public void reset() {
+		PlayerPrefs.DeleteAll ();
+		PlayerPrefs.SetInt ("Progress", 1);
+		PlayerPrefs.SetInt ("Money", 0);
+		PlayerPrefs.SetInt ("Tower1", 1);
 	}
 
 	public void selectLevel (int level) {
