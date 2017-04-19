@@ -3,12 +3,39 @@ guid: 6a64651c715edd2428104e893b882c5c
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
+    100000: bGUN01low
+    100002: bGUN02low
+    100004: bGUN03low
+    100006: gGUN01low
+    100008: gGUN02low
+    100010: gGUN03low
+    100012: //RootNode
+    400000: bGUN01low
+    400002: bGUN02low
+    400004: bGUN03low
+    400006: gGUN01low
+    400008: gGUN02low
+    400010: gGUN03low
+    400012: //RootNode
+    2300000: bGUN01low
+    2300002: bGUN02low
+    2300004: bGUN03low
+    2300006: gGUN01low
+    2300008: gGUN02low
+    2300010: gGUN03low
+    3300000: bGUN01low
+    3300002: bGUN02low
+    3300004: bGUN03low
+    3300006: gGUN01low
+    3300008: gGUN02low
+    3300010: gGUN03low
     4300000: bGUN01low
     4300002: bGUN02low
     4300004: bGUN03low
     4300006: gGUN01low
     4300008: gGUN02low
     4300010: gGUN03low
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0

@@ -10,15 +10,20 @@ public class MonsterController : AttackableController {
     override public void Start () {
         base.Start();
         this.tag = "Monster";
-        this.route = new List<Vector3>();
     }
 
     override public void Update () {
         base.Update();
         if (route.Count > 0) {
             Vector3 direction = (route[0] - this.transform.position);
+            if (Mathf.Abs(direction.x) + Mathf.Abs(direction.z) < 0.02) {
+                route.RemoveAt(0);
+                Debug.Log(route.Count);
+            }
             direction.y = 0;
             direction = direction.normalized;
+            // Lerp
+            this.transform.forward = direction;
             this.GetComponent<Rigidbody>().velocity = direction * velocity;
         } else {
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;

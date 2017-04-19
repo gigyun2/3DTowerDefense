@@ -552,13 +552,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
-  atk: 0
+  atk: 5
   def: 0
   range: 0
   speed: 0
   cd: 0
   isAlive: 0
   route: []
+  velocity: 3
   reward: 0
 --- !u!135 &135604864764798732
 SphereCollider:
@@ -570,8 +571,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.009
-  m_Center: {x: 0, y: 0.007, z: 0}
+  m_Radius: 0.008
+  m_Center: {x: 0, y: 0.008, z: 0}
 --- !u!137 &137082868888353908
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
