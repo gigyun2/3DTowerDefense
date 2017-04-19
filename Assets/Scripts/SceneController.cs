@@ -16,6 +16,8 @@ public class SceneController : MonoBehaviour {
             new Vector3(4,0,4), new Vector3(3,0,4), new Vector3(2,0,4), new Vector3(1,0,4), new Vector3(0,0,4),
             new Vector3(0,0,3), new Vector3(0,0,2), new Vector3(0,0,1), new Vector3(0,0,0), new Vector3(1,0,0),
             new Vector3(2,0,0), new Vector3(2,0,1), new Vector3(2,0,2)};
+
+        StartCoroutine(SpawnMonster(10));
 	}
 
     IEnumerator SpawnMonster(int number) {
@@ -23,9 +25,11 @@ public class SceneController : MonoBehaviour {
         while (n < number) {
             List<Vector3> monsterRoute = new List<Vector3>(route);
             for (int i = 0; i < monsterRoute.Count; i++) {
-
+                monsterRoute[i] = monsterRoute[i] * 2 + new Vector3(Random.value*1.6f-0.8f, 0, Random.value* 1.6f - 0.8f);
             }
-            monsters.Add(Instantiate(monster, route[0] * 2));
+            GameObject spawn = Instantiate(monster, monsterRoute[0], Quaternion.identity);
+            spawn.GetComponent<MonsterController>().route = monsterRoute;
+            monsters.Add(spawn);
 
             n++;
             yield return new WaitForSeconds(1f);

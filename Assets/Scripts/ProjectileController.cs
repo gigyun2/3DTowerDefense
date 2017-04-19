@@ -12,14 +12,13 @@ public class ProjectileController : AttackableController {
     }
 
     override public void Update () {
-        base.Update();
-        this.GetComponent<Rigidbody>().velocity = this.direction.normalized * this.flySpeed;
+        this.GetComponent<Rigidbody>().velocity = direction.normalized * flySpeed;
     }
 
     void OnCollisionEnter (Collision collision) {
-        GameObject collidedObject = collision.gameObject.transform.root.gameObject;
+        GameObject collidedObject = collision.collider.gameObject.transform.root.gameObject;
         if (collidedObject != null && collidedObject.tag.Equals("Monster")) {
-            collidedObject.GetComponent<MonsterController>().Hurt(this.atk);
+            collidedObject.GetComponent<MonsterController>().Hurt(atk);
             die();
         }
     }
