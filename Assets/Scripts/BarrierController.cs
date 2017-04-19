@@ -6,7 +6,15 @@ public class BarrierController : AttackableController {
 
     override public void Start () {
         base.Start();
-        this.tag = "Barrier";
+		this.tag = "Barrier";		
+
+		// every level increase hp 10%, def 20%
+		int level = 1;
+		if (PlayerPrefs.HasKey ("Barrier1")) {
+			PlayerPrefs.GetInt ("Barrier1");
+		}
+		this.hp = (int)(500 * (1 + 0.1 * (level - 1)));
+		this.def = (int)(10 * (1 + 0.2 * (level - 1)));
     }
 
     override public void Update () {

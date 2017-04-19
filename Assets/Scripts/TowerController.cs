@@ -9,6 +9,16 @@ public class TowerController : AttackableController {
     override public void Start () {
         base.Start();
         this.tag = "Tower";
+
+		// every level increase size 25%, atk 50%, speed 0.2, range 0.5
+		int level = 1;
+		if (PlayerPrefs.HasKey ("Tower1")) {
+			PlayerPrefs.GetInt ("Tower1");
+		}
+		this.transform.localScale = new Vector3 (0.25, 0.25, 0.25) * (1 + level * 0.25);
+		this.atk = (int)(10 * (1 + 0.5 * (level - 1)));
+		this.speed = (float)(0.4 + 0.2 * (level - 1));
+		this.range = (float)(3 + 0.5 * (level - 1));
     }
 
     override public void Update () {

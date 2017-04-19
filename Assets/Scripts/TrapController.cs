@@ -8,6 +8,14 @@ public class TrapController : AttackableController {
     override public void Start() {
         base.Start();
 		this.tag = "Trap";
+
+		// every level increase atk 50%, range 0.5
+		int level = 1;
+		if (PlayerPrefs.HasKey ("Trap1")) {
+			PlayerPrefs.GetInt ("Trap1");
+		}
+		this.atk = (int)(10 * (1 + 0.5 * (level - 1)));
+		this.range = (float)(3 + 0.5 * (level - 1));
 	}
 	
 	// Update is called once per frame
