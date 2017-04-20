@@ -10,9 +10,10 @@ namespace UnityStandardAssets.Characters.FirstPerson {
     [RequireComponent(typeof(AudioSource))]
     public class FirstPersonController : AttackableController {
         public int money;
-        private GameObject holding;
+        //private GameObject holding;
         public List<GameObject> towers;
         public List<GameObject> barriers;
+		public List<GameObject> traps;
         public List<GameObject> weapons;
 
 
@@ -73,7 +74,8 @@ namespace UnityStandardAssets.Characters.FirstPerson {
             weapons.Add((GameObject)Resources.Load("Weapon"));
             towers.Add((GameObject)Resources.Load("Tower"));
             barriers.Add((GameObject)Resources.Load("Barrier"));
-            holding = weapons[0];
+			traps.Add ((GameObject)Resources.Load ("Trap"));
+			//holding = GameObject.Find("Weapon");
 
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
@@ -90,38 +92,72 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 
         // Update is called once per frame
         private void Update () {
-            if (Input.GetMouseButtonDown(0) && holding != null) {
+            /*if (Input.GetMouseButtonDown(0) && holding != null) {
                 switch (holding.tag) {
-                    case "Tower":
-                        buildTower(holding.transform.position, 0);
-                        holding = Instantiate(weapons[0]);
+					case "Tower":
+						Destroy (holding);
+						buildTower (0);
+						holding = Instantiate (weapons [0]);
+						holding.transform.SetParent (this.transform.GetChild (1));
                         break;
                     case "Barrier":
-                        buildBarrier(holding.transform.position, 0);
-                        holding = Instantiate(weapons[0]);
+						Destroy(holding);
+                        buildBarrier(0);
+						holding = Instantiate(weapons[0]);
+						holding.transform.SetParent (this.transform.GetChild (1));
                         break;
+					case "Trap":
+						Destroy(holding);
+						buildTrap (0);
+						holding = Instantiate(weapons[0]);
+						holding.transform.SetParent (this.transform.GetChild (1));
+						break;
                     case "Weapon":
                         fire();
                         break;
                 }
             }
+            */
+			if (Input.GetMouseButtonDown(0)) {
+				fire();
+			}
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+				//Instantiate (weapons [0], transform.position + new Vector3 (0.6f, 0.25f, 1), transform.rotation);
+			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+				buildTower (0);
+			} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+				buildBarrier (0);
+			} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+				buildTrap (0);
+			}
+			GameObject gun = GameObject.Find ("Weapon");
+			if (gun != null) {
+				gun.transform.position = this.transform.position + Vector3.right;
+			}
 
-            if (Input.GetKeyDown(KeyCode.Keypad1)) {
+            /*if (Input.GetKeyDown(KeyCode.Alpha1)) {
                 Destroy(holding);
                 holding = Instantiate(weapons[0], transform.position + new Vector3(0.6f, 0.25f, 1), transform.rotation);
-            } else if (Input.GetKeyDown(KeyCode.Keypad2)) {
+				holding.transform.SetParent (this.transform.GetChild (1));
+			} else if (Input.GetKeyDown(KeyCode.Alpha2)) {
                 Destroy(holding);
-                holding = Instantiate(towers[0]);
-            } else if (Input.GetKeyDown(KeyCode.Keypad3)) {
+				holding = Instantiate(towers[0]);
+				holding.transform.SetParent (this.transform.GetChild (1));
+				holding.transform.localPosition = new Vector3 (0.5f, -0.5f, 1);
+				holding.transform.localScale = new Vector3 (0.05f, 0.05f, 0.05f);
+			} else if (Input.GetKeyDown(KeyCode.Alpha3)) {
                 Destroy(holding);
                 holding = Instantiate(barriers[0]);
+				holding.transform.SetParent (this.transform.GetChild (1));
             }
-
+			*/
+			/*
             if (holding.tag.Equals("Weapon")) {
                 holding.transform.position = this.transform.position + Vector3.right;
             } else {
                 //if (Physics.Raycast())
             }
+			*/
 
             RotateView();
             // the jump state needs to read here to make sure it is not missed
@@ -144,13 +180,13 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 
 
 
-        private void buildTower (Vector3 pointing, int id) {
+		private void buildTower (int index) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Physics.Raycast(ray, out hit, 100f);
             if (hit.collider != null && hit.collider.tag.Equals("Tile_placeable")) {
-                GameObject go = GameObject.Instantiate(Resources.Load("Tower") as GameObject);
-                go.transform.position = hit.collider.transform.position + new Vector3(0f, 5f, 0f);
+				GameObject go = GameObject.Instantiate(towers[index]);
+				go.transform.position = hit.collider.transform.position;
                 Quaternion quaternion = Quaternion.LookRotation(this.transform.position - hit.transform.position);
                 quaternion.x = 0;
                 quaternion.z = 0;
@@ -158,14 +194,28 @@ namespace UnityStandardAssets.Characters.FirstPerson {
             }
         }
 
-        private void buildBarrier (Vector3 pointing, int index) {
-            // GameObject target = getGridPoint();
-            // if (target.walkable && !target.haveBarrier)
-            //      Instantiate(barriers[id]);
+        private void buildBarrier (int index) {
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+			Physics.Raycast(ray, out hit, 100f);
+			if (hit.collider != null && hit.collider.tag.Equals("Tile_walkable")) {
+				GameObject go = GameObject.Instantiate(barriers[index]);
+				go.transform.position = hit.collider.transform.position;
+			}
         }
 
+		private void buildTrap (int index) {
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+			Physics.Raycast(ray, out hit, 100f);
+			if (hit.collider != null && hit.collider.tag.Equals("Tile_walkable")) {
+				GameObject go = GameObject.Instantiate(traps[index]);
+				go.transform.position = hit.collider.transform.position;
+			}
+		}
+
         private void changeWeapon (int index) {
-            holding = weapons[index];
+            //holding = weapons[index];
         }
 
         private void fire () {
