@@ -14,9 +14,9 @@ public class MonsterController : AttackableController {
         this.tag = "Monster";
 
         int level = int.Parse(SceneManager.GetActiveScene().name.Substring(5));
-        if (PlayerPrefs.GetInt("Progress", 0) > level &&
-            PlayerPrefs.GetInt("Trap1", 0) > 0 && PlayerPrefs.GetInt("Barrier1", 0) > 0) {
-            this.hp *= 2;
+        //if (PlayerPrefs.GetInt("Progress", 0) > level && PlayerPrefs.GetInt("Trap1", 0) > 0 && PlayerPrefs.GetInt("Barrier1", 0) > 0) {
+		if (PlayerPrefs.GetInt("Progress", 1) > level) {
+			this.hp *= 2;
             this.atk *= 2;
             this.velocity *= 1.5f;
         }

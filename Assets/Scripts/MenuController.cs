@@ -34,6 +34,9 @@ public class MenuController : MonoBehaviour {
 			GameObject.Find ("Level Button (" + i + ")").GetComponent<Button> ().interactable = true;
 		}
         */
+		for (int i = 1; i < progress; i++) {
+			GameObject.Find ("Level Button (" + i + ")").GetComponent<Image> ().color = new Color(210f / 256f , 81f / 256f, 81f / 256f);
+		}
     }
 
 	void LoadShop() {
