@@ -195,7 +195,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
                 damageText.name = "Failed";
                 TextMesh textMesh = damageText.AddComponent<TextMesh>();
                 textMesh.text = "Inappropriate position";
-                textMesh.fontSize = 6;
+                textMesh.fontSize = 4;
                 textMesh.anchor = TextAnchor.MiddleCenter;
                 damageText.transform.position = hit.collider.transform.position;
                 damageText.transform.rotation = Camera.main.transform.rotation;
@@ -216,7 +216,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
                 damageText.name = "Failed";
                 TextMesh textMesh = damageText.AddComponent<TextMesh>();
                 textMesh.text = "Inappropriate position";
-                textMesh.fontSize = 6;
+                textMesh.fontSize = 4;
                 textMesh.anchor = TextAnchor.MiddleCenter;
                 damageText.transform.position = hit.collider.transform.position;
                 damageText.transform.LookAt(this.transform.position);
@@ -239,7 +239,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
                 damageText.name = "Failed";
                 TextMesh textMesh = damageText.AddComponent<TextMesh>();
                 textMesh.text = "Inappropriate position";
-                textMesh.fontSize = 6;
+                textMesh.fontSize = 4;
                 textMesh.anchor = TextAnchor.MiddleCenter;
                 damageText.transform.position = hit.collider.transform.position;
                 damageText.transform.LookAt(this.transform.position);

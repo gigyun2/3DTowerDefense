@@ -145,7 +145,7 @@ public class MenuController : MonoBehaviour {
 	}
 
 	public void selectLevel (int level) {
-		SceneManager.LoadScene ("level" + level);
+		SceneManager.LoadScene ("Stage" + level);
 	}
 
 	public void upgradeTower (int index) {
