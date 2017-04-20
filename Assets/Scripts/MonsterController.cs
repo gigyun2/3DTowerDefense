@@ -37,7 +37,7 @@ public class MonsterController : AttackableController {
 
     }
 
-    void OnCollisionStay (Collision collision) {
+    void OnCollisionEnter (Collision collision) {
         GameObject collidedObject = collision.gameObject.transform.root.gameObject;
         if (collidedObject != null) {
             if (this.cd <= 0) {
@@ -55,7 +55,7 @@ public class MonsterController : AttackableController {
 
     protected override void die () {
         FirstPersonController playerController
-            = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
+            = GameObject.FindGameObjectWithTag("Character").GetComponent<FirstPersonController>();
         playerController.money += 100;
         //Destroy(this.gameObject);
         this.GetComponent<Collider>().enabled = false;

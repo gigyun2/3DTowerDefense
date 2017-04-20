@@ -92,6 +92,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 
         // Update is called once per frame
         private void Update () {
+            base.Update();
             /*if (Input.GetMouseButtonDown(0) && holding != null) {
                 switch (holding.tag) {
 					case "Tower":
@@ -118,7 +119,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
                 }
             }
             */
-			if (Input.GetMouseButtonDown(0)) {
+			if (Input.GetMouseButton(0)) {
 				fire();
 			}
 			if (Input.GetKeyDown (KeyCode.Alpha1)) {
@@ -129,10 +130,6 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 				buildBarrier (0);
 			} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
 				buildTrap (0);
-			}
-			GameObject gun = GameObject.Find ("Weapon");
-			if (gun != null) {
-				gun.transform.position = this.transform.position + Vector3.right;
 			}
 
             /*if (Input.GetKeyDown(KeyCode.Alpha1)) {
@@ -179,18 +176,19 @@ namespace UnityStandardAssets.Characters.FirstPerson {
         }
 
 
-
+        
 		private void buildTower (int index) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Physics.Raycast(ray, out hit, 100f);
             if (hit.collider != null && hit.collider.tag.Equals("Tile_placeable")) {
-				GameObject go = GameObject.Instantiate(towers[index]);
-				go.transform.position = hit.collider.transform.position;
+				GameObject tower = GameObject.Instantiate(towers[index]);
+				tower.transform.position = hit.collider.transform.position;
                 Quaternion quaternion = Quaternion.LookRotation(this.transform.position - hit.transform.position);
                 quaternion.x = 0;
                 quaternion.z = 0;
-                go.transform.rotation = quaternion;
+                tower.transform.rotation = quaternion;
+                towers.Add(tower);
             }
         }
 
@@ -220,9 +218,13 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 
         private void fire () {
             if (cd <= 0) {
-                GameObject bullet = Instantiate((GameObject)Resources.Load("Projectile"));
-                bullet.GetComponent<ProjectileController>().direction = transform.forward;
-                bullet.GetComponent<ProjectileController>().flySpeed = 2;
+                GameObject gun = GameObject.Find("Weapon");
+                Transform firepoint = gun.transform.FindChild("FirePoint");
+                GameObject bullet = Instantiate((GameObject)Resources.Load("Projectile"), firepoint);
+                bullet.transform.localScale = new Vector3 (5, 5, 5);
+                bullet.GetComponent<ProjectileController>().direction = firepoint.forward;
+                bullet.GetComponent<ProjectileController>().flySpeed = 10;
+                bullet.transform.SetParent(null);
                 cd = 1 / speed;
             }
         }
