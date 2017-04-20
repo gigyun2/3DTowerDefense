@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class MonsterController : AttackableController {
@@ -11,6 +12,14 @@ public class MonsterController : AttackableController {
     override public void Start () {
         base.Start();
         this.tag = "Monster";
+
+        int level = int.Parse(SceneManager.GetActiveScene().name.Substring(5));
+        if (PlayerPrefs.GetInt("Progress", 0) > level &&
+            PlayerPrefs.GetInt("Trap1", 0) > 0 && PlayerPrefs.GetInt("Barrier1", 0) > 0) {
+            this.hp *= 2;
+            this.atk *= 2;
+            this.velocity *= 1.5f;
+        }
     }
 
     override public void Update () {

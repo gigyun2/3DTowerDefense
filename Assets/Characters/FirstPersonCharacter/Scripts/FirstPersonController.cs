@@ -127,9 +127,11 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
 				buildTower (0);
 			} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
-				buildBarrier (0);
+			    if (PlayerPrefs.HasKey("Barrier1"))
+                    buildBarrier (0);
 			} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
-				buildTrap (0);
+                if (PlayerPrefs.HasKey("Trap1"))
+                    buildTrap (0);
 			}
 
             /*if (Input.GetKeyDown(KeyCode.Alpha1)) {
@@ -266,7 +268,8 @@ namespace UnityStandardAssets.Characters.FirstPerson {
         }
 
         protected override void die () {
-            // popup Die UI
+            UIController ui = GameObject.Find("Canvas").GetComponent<UIController>();
+            ui.onLose();
         }
 
 

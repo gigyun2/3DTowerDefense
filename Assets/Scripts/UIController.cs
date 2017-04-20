@@ -30,27 +30,31 @@ public class UIController : MonoBehaviour {
 	void Update () {
         if (playing) {
             Healthbar.fillAmount = playerController.hp / 100f;
-            time.text = (sceneController.time - Time.time).ToString();
+            time.text = (sceneController.time - Time.timeSinceLevelLoad).ToString();
             money.text = (playerController.money).ToString();
         }
     }
 
 	public void onWin() {
+        playerController.money += sceneController.reward;
+        Update();
         playing = false;
-		playerController.enabled = false;
+        playerController.enabled = false;
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
 		EndPanel.SetActive (true);
 		WinPanel.SetActive (true);
 
 		int level = int.Parse(SceneManager.GetActiveScene ().name.Substring(5));
-		PlayerPrefs.SetInt("Progress", (level));
+        if (PlayerPrefs.GetInt("Progress", 0) <= level)
+		    PlayerPrefs.SetInt("Progress", (level + 1));
         int money = PlayerPrefs.GetInt("Money", 0);
-        money = money + playerController.money + 1000;
+        money = money + playerController.money;
         PlayerPrefs.SetInt("Money", money);
 	}
 
 	public void onLose() {
+        Update();
         playing = false;
         playerController.enabled = false;
 		Cursor.lockState = CursorLockMode.None;
@@ -61,8 +65,11 @@ public class UIController : MonoBehaviour {
 
 	public void nextLevel() {
 		int level = int.Parse(SceneManager.GetActiveScene ().name.Substring(5));
-		SceneManager.LoadScene ("Stage" + (level + 1));
-	}
+        // NOT READY
+        //SceneManager.LoadScene ("Stage" + (level + 1));
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
 
 	public void retry() {
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);

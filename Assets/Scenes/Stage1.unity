@@ -2002,6 +2002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 99
+  reward: 1000
 --- !u!1001 &599553380
 Prefab:
   m_ObjectHideFlags: 0

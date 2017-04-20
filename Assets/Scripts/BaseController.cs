@@ -16,7 +16,6 @@ public class BaseController : AttackableController {
 	}
 
     protected override void die () {
-        Debug.Log("Stage Failed!");
-		GameObject.Find ("Canvas").GetComponent<UIController> ().onLose ();
+		GameObject.Find ("Canvas").GetComponent<UIController> ().onLose();
     }
 }

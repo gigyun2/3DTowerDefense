@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour {
     public float time;
+    public int reward;
     private List<GameObject> monsters;
     private List<Vector3> route;
     private GameObject monster; // TODO: add various type of monsters
@@ -22,6 +23,8 @@ public class SceneController : MonoBehaviour {
 	}
 
     IEnumerator SpawnMonster(int number) {
+        yield return new WaitForSeconds(1f);
+
         int n = 0;
         while (n < number) {
             List<Vector3> monsterRoute = new List<Vector3>(route);
@@ -45,9 +48,14 @@ public class SceneController : MonoBehaviour {
                 monsters.RemoveAt(i);
             }
         }
-        if (Time.time > 11 && monsters.Count == 0) {
+        if (Time.timeSinceLevelLoad > 11 && monsters.Count == 0) {
             UIController ui = GameObject.Find("Canvas").GetComponent<UIController>();
             ui.onWin();
+            Destroy(this);
+        } else if (time < Time.timeSinceLevelLoad) {
+            UIController ui = GameObject.Find("Canvas").GetComponent<UIController>();
+            ui.onLose();
+            Destroy(this);
         }
 	}
 }

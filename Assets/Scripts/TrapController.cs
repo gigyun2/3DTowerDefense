@@ -22,7 +22,7 @@ public class TrapController : AttackableController {
 	override public void Update () {
 		base.Update ();
 	}
-
+    /*
 	void OnCollisionStay(Collision collision) {
 		GameObject collidedObject = collision.gameObject.transform.root.gameObject;
 		if (collidedObject != null && collidedObject.tag.Equals ("Monster")) {
@@ -38,6 +38,20 @@ public class TrapController : AttackableController {
             // TODO: with explose particle effect?
             die();
         }
+    }*/
+
+    void OnCollisionExit (Collision collision)
+    {
+        GameObject collidedObject = collision.gameObject.transform.root.gameObject;
+        if (collidedObject != null && collidedObject.tag.Equals("Monster")) {
+            foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Monster")) {
+                if (Vector3.Distance(monster.transform.position, this.transform.position) < this.range) {
+                    monster.GetComponent<MonsterController>().Hurt(this.atk);
+                }
+            }
+        }
+        // TODO: with explose particle effect?
+        die();
     }
 
     protected override void die() {

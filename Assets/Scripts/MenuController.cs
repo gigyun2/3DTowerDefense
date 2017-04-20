@@ -27,10 +27,14 @@ public class MenuController : MonoBehaviour {
 		int progress = 1;
 		if (PlayerPrefs.HasKey ("Progress"))
 			progress = PlayerPrefs.GetInt ("Progress");
+        GameObject.Find("Level Button (" + 1 + ")").GetComponent<Button>().interactable = true;
+        // REMOVE COMMENT AFTER IMPLEMENT
+        /*
 		for (int i = 1; i <= progress; i++) {
 			GameObject.Find ("Level Button (" + i + ")").GetComponent<Button> ().interactable = true;
 		}
-	}
+        */
+    }
 
 	void LoadShop() {
 		// initialize money
