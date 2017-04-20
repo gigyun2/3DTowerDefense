@@ -189,6 +189,17 @@ namespace UnityStandardAssets.Characters.FirstPerson {
                 quaternion.z = 0;
                 tower.transform.rotation = quaternion;
                 towers.Add(tower);
+            } else {
+
+                GameObject damageText = new GameObject();
+                damageText.name = "Failed";
+                TextMesh textMesh = damageText.AddComponent<TextMesh>();
+                textMesh.text = "Inappropriate position";
+                textMesh.fontSize = 6;
+                textMesh.anchor = TextAnchor.MiddleCenter;
+                damageText.transform.position = hit.collider.transform.position;
+                damageText.transform.rotation = Camera.main.transform.rotation;
+                GameObject.Destroy(damageText, 2f);
             }
         }
 
@@ -199,7 +210,18 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 			if (hit.collider != null && hit.collider.tag.Equals("Tile_walkable")) {
 				GameObject go = GameObject.Instantiate(barriers[index]);
 				go.transform.position = hit.collider.transform.position;
-			}
+            } else {
+
+                GameObject damageText = new GameObject();
+                damageText.name = "Failed";
+                TextMesh textMesh = damageText.AddComponent<TextMesh>();
+                textMesh.text = "Inappropriate position";
+                textMesh.fontSize = 6;
+                textMesh.anchor = TextAnchor.MiddleCenter;
+                damageText.transform.position = hit.collider.transform.position;
+                damageText.transform.LookAt(this.transform.position);
+                GameObject.Destroy(damageText, 2f);
+            }
         }
 
 		private void buildTrap (int index) {
@@ -208,9 +230,22 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 			Physics.Raycast(ray, out hit, 100f);
 			if (hit.collider != null && hit.collider.tag.Equals("Tile_walkable")) {
 				GameObject go = GameObject.Instantiate(traps[index]);
-				go.transform.position = hit.collider.transform.position;
-			}
-		}
+				go.transform.position = hit.collider.transform.position + Vector3.up * 0.1f;
+                go.transform.rotation = Quaternion.identity;
+
+            } else {
+
+                GameObject damageText = new GameObject();
+                damageText.name = "Failed";
+                TextMesh textMesh = damageText.AddComponent<TextMesh>();
+                textMesh.text = "Inappropriate position";
+                textMesh.fontSize = 6;
+                textMesh.anchor = TextAnchor.MiddleCenter;
+                damageText.transform.position = hit.collider.transform.position;
+                damageText.transform.LookAt(this.transform.position);
+                GameObject.Destroy(damageText, 2f);
+            }
+        }
 
         private void changeWeapon (int index) {
             //holding = weapons[index];
@@ -224,6 +259,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
                 bullet.transform.localScale = new Vector3 (5, 5, 5);
                 bullet.GetComponent<ProjectileController>().direction = firepoint.forward;
                 bullet.GetComponent<ProjectileController>().flySpeed = 10;
+                bullet.GetComponent<ProjectileController>().atk = 5;
                 bullet.transform.SetParent(null);
                 cd = 1 / speed;
             }

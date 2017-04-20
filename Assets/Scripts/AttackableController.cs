@@ -58,7 +58,7 @@ abstract public class AttackableController : MonoBehaviour {
             damageText.name = "Damage Text";
             TextMesh textMesh = damageText.AddComponent<TextMesh>();
             textMesh.text = effectiveDamage.ToString();
-            textMesh.fontSize = 8;
+            textMesh.fontSize = 7;
             textMesh.anchor = TextAnchor.MiddleCenter;
             damageText.transform.SetParent(this.transform);
             damageText.transform.localPosition = new Vector3(0, 0, 0);
