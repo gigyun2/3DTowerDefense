@@ -209,7 +209,7 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 			Physics.Raycast(ray, out hit, 100f);
 			if (hit.collider != null && hit.collider.tag.Equals("Tile_walkable")) {
 				GameObject go = GameObject.Instantiate(barriers[index]);
-				go.transform.position = hit.collider.transform.position;
+				go.transform.position = hit.collider.transform.position + Vector3.up;
             } else {
 
                 GameObject damageText = new GameObject();

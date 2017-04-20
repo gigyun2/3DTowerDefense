@@ -515,7 +515,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1243037274871210}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 1
   m_AngularDrag: 1
   m_UseGravity: 1
@@ -571,7 +571,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.008
+  m_Radius: 0.007
   m_Center: {x: 0, y: 0.008, z: 0.001}
 --- !u!137 &137082868888353908
 SkinnedMeshRenderer:

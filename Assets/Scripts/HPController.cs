@@ -18,7 +18,6 @@ public class HPController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(playerController.hp);
 		Healthbar.fillAmount = playerController.hp/100f;
 
 	}

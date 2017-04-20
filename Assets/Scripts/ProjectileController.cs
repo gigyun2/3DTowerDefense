@@ -19,8 +19,8 @@ public class ProjectileController : AttackableController {
         GameObject collidedObject = collider.gameObject.transform.root.gameObject;
         if (collidedObject != null && collidedObject.tag.Equals("Monster")) {
             collidedObject.GetComponent<MonsterController>().Hurt(atk);
-            die();
         }
+        die();
     }
 
     protected override void die () {

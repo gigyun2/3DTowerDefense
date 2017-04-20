@@ -50,6 +50,10 @@ public class MonsterController : AttackableController {
                     collidedObject.GetComponent<FirstPersonController>().Hurt(this.atk);
                     this.cd = 1 / this.speed;
                 }
+                if (collidedObject.tag.Equals("Base")) {
+                    collidedObject.GetComponent<BaseController>().Hurt(this.atk);
+                    this.cd = 1 / this.speed;
+                }
             }
         }
     }

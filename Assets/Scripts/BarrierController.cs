@@ -13,7 +13,7 @@ public class BarrierController : AttackableController {
 		if (PlayerPrefs.HasKey ("Barrier1")) {
 			PlayerPrefs.GetInt ("Barrier1");
 		}
-		this.hp = (int)(500 * (1 + 0.1 * (level - 1)));
+		this.hp = (int)(50 * (1 + 0.1 * (level - 1)));
 		this.def = (int)(10 * (1 + 0.2 * (level - 1)));
     }
 
@@ -36,7 +36,19 @@ public class BarrierController : AttackableController {
     }
 
     protected override void die () {
+        
+        GameObject damageText = new GameObject();
+        damageText.name = "Damage Text";
+        TextMesh textMesh = damageText.AddComponent<TextMesh>();
+        textMesh.text = "Destroyed!";
+        textMesh.fontSize = 7;
+        textMesh.anchor = TextAnchor.MiddleCenter;
+        damageText.transform.SetParent(null);
+        damageText.transform.localPosition = new Vector3(0, 0.1f, 0);
+        damageText.transform.rotation = Camera.main.transform.rotation;
+        GameObject.Destroy(damageText, 2f);
 
+        Destroy(this.gameObject);
     }
 
 }
