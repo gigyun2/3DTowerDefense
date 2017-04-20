@@ -25,7 +25,7 @@ public class SceneController : MonoBehaviour {
         while (n < number) {
             List<Vector3> monsterRoute = new List<Vector3>(route);
             for (int i = 0; i < monsterRoute.Count; i++) {
-                monsterRoute[i] = monsterRoute[i] * 2 + new Vector3(Random.value*1.6f-0.8f, 0, Random.value*1.6f-0.8f);
+                monsterRoute[i] = monsterRoute[i] * 2 + new Vector3(Random.value*1.2f-0.6f, 0, Random.value*1.2f-0.6f);
             }
             GameObject spawn = Instantiate(monster, monsterRoute[0], Quaternion.identity);
             monsterRoute.RemoveAt(0);

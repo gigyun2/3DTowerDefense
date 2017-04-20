@@ -555,7 +555,7 @@ MonoBehaviour:
   atk: 5
   def: 0
   range: 0
-  speed: 0
+  speed: 2
   cd: 0
   isAlive: 1
   route: []

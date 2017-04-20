@@ -1,23 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 using Image=UnityEngine.UI.Image;
 
 public class HPController : MonoBehaviour {
 	Image Healthbar;
 	float tmpHealth=1;
 
+    FirstPersonController playerController;
+
 	// Use this for initialization
 	void Start () {
-		Healthbar=GameObject.Find ("FirstPersonController").transform.FindChild ("Canvas").FindChild("health-bar").GetComponent<Image>();
+        playerController = GameObject.Find("FPSController").GetComponent<FirstPersonController>();
+        Healthbar = this.transform.FindChild("health-bar").GetComponent<Image>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Healthbar.fillAmount = tmpHealth;
+        Debug.Log(playerController.hp);
+		Healthbar.fillAmount = playerController.hp/100f;
 
 	}
-	public void changeHealth(float addHealth, float subHealth){
+	/*public void changeHealth(float addHealth, float subHealth){
 		//call changeHealth to adust health rate
 		tmpHealth = tmpHealth+addHealth-subHealth;
 		if (tmpHealth > 1f)
@@ -25,5 +30,5 @@ public class HPController : MonoBehaviour {
 		//if (tmpHealth == 0f)
 			//endGame();
 
-	}
+	}*/
 }
