@@ -55,6 +55,6 @@ public class TrapController : AttackableController {
     }
 
     protected override void die() {
-        GameObject.Destroy(this);
+        GameObject.Destroy(this.gameObject);
     }
 }

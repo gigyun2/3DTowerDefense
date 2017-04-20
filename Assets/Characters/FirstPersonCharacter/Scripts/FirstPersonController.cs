@@ -260,8 +260,8 @@ namespace UnityStandardAssets.Characters.FirstPerson {
                 GameObject bullet = Instantiate((GameObject)Resources.Load("Projectile"), firepoint);
                 bullet.transform.localScale = new Vector3 (5, 5, 5);
                 bullet.GetComponent<ProjectileController>().direction = firepoint.forward;
-                bullet.GetComponent<ProjectileController>().flySpeed = 10;
-                bullet.GetComponent<ProjectileController>().atk = 5;
+                bullet.GetComponent<ProjectileController>().flySpeed = 15;
+                bullet.GetComponent<ProjectileController>().atk = atk;
                 bullet.transform.SetParent(null);
                 cd = 1 / speed;
             }
