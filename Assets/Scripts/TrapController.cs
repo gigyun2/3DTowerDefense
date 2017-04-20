@@ -23,7 +23,7 @@ public class TrapController : AttackableController {
 		base.Update ();
 	}
 
-	void OnCollisionEnter(Collision collision) {
+	void OnCollisionStay(Collision collision) {
 		GameObject collidedObject = collision.gameObject.transform.root.gameObject;
 		if (collidedObject != null && collidedObject.tag.Equals ("Monster")) {
 			if (this.type.Equals ("single")) {

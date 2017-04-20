@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneController : MonoBehaviour {
+    public float time;
     private List<GameObject> monsters;
     private List<Vector3> route;
     private GameObject monster; // TODO: add various type of monsters
@@ -39,6 +40,14 @@ public class SceneController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        for (int i = 0; i < monsters.Count; i++) {
+            if (!monsters[i].GetComponent<MonsterController>().isAlive) {
+                monsters.RemoveAt(i);
+            }
+        }
+        if (Time.time > 11 && monsters.Count == 0) {
+            UIController ui = GameObject.Find("Canvas").GetComponent<UIController>();
+            ui.onWin();
+        }
 	}
 }

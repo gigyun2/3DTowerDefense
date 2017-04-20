@@ -61,7 +61,7 @@ public class MonsterController : AttackableController {
     protected override void die () {
         FirstPersonController playerController
             = GameObject.FindGameObjectWithTag("Character").GetComponent<FirstPersonController>();
-        playerController.money += 100;
+        playerController.money += reward;
         //Destroy(this.gameObject);
         this.GetComponent<Collider>().enabled = false;
         StartCoroutine(Dying(1.5f));

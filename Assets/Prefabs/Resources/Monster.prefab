@@ -560,7 +560,7 @@ MonoBehaviour:
   isAlive: 1
   route: []
   velocity: 2
-  reward: 0
+  reward: 100
 --- !u!135 &135604864764798732
 SphereCollider:
   m_ObjectHideFlags: 1
