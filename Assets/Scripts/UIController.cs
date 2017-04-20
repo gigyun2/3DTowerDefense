@@ -47,7 +47,7 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void retry() {
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().name.Substring(5));
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
 
 	public void backToMenu() {

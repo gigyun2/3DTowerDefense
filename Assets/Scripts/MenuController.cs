@@ -142,6 +142,7 @@ public class MenuController : MonoBehaviour {
 		PlayerPrefs.SetInt ("Progress", 1);
 		PlayerPrefs.SetInt ("Money", 0);
 		PlayerPrefs.SetInt ("Tower1", 1);
+		PlayerPrefs.SetInt ("Weapon1", 1);
 	}
 
 	public void selectLevel (int level) {
